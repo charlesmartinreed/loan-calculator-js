@@ -1,6 +1,15 @@
 // Listen for submit button
 const loanForm = document.querySelector('#loan-form');
-loanForm.addEventListener('submit', calculateResults);
+loanForm.addEventListener('submit', function(e){
+	document.getElementById('results').classList.add('d-none');
+
+	// show the loader image for 2 seconds, then calculate
+	document.getElementById('loading').classList.add('d-block');
+
+	setTimeout(calculateResults, 2000);
+
+	e.preventDefault();
+});
 
 // UI Variables
 const amountEl = document.getElementById('amount');
@@ -10,7 +19,7 @@ const monthlyPaymentEl = document.getElementById('monthly-payment');
 const totalPaymentEl = document.getElementById('total-payment');
 const totalInterestEl = document.getElementById('total-interest');
 
-function calculateResults(e) {
+function calculateResults() {
 	const principal = parseFloat(amountEl.value);
 	const calculatedInterest = (parseFloat(interestEl.value) / 100) / 12;
 	const calculatedPayments = parseFloat(yearsEl.value) * 12;
@@ -21,6 +30,8 @@ function calculateResults(e) {
 
 	// Check that the monthly value is finite - if so, display value in the proper fields
 	if(isFinite(monthly)) {
+		document.getElementById('loading').classList.remove('d-block');
+		document.getElementById('results').classList.remove('d-none');
 		monthlyPaymentEl.value = monthly.toFixed(2); //set decimal points to 2
 		totalPaymentEl.value = (monthly * calculatedPayments).toFixed(2);
 		totalInterestEl.value = ((monthly * calculatedPayments) - principal).toFixed(2);
@@ -28,12 +39,13 @@ function calculateResults(e) {
 		//create element, add to the DOM
 		showError('Please check your input numbers');
 	}
-
-	e.preventDefault();
 }
 
 // Display error on DOM
 function showError(error) {
+	//hide the loader image
+	document.getElementById('loading').classList.remove('d-block');
+
 	// create the div
 	const errorDiv = document.createElement('div');
 
