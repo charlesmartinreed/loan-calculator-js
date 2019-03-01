@@ -8,10 +8,82 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+		<link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
+
     <title>Hello, world!</title>
   </head>
-  <body>
-    <h1>Hello, world!</h1>
+  <body class="bg-dark" style="font-family: Cabin, sans-serif">
+		<!-- Bootstrap container class centers, we add margin... -->
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 mx-auto">
+					<div class="card card-body text-center mt-5">
+						<h1 class="heading display-5 pb-3">Loan Calculator</h1>
+						<form action="" id="loan-form">
+								<!-- In Bootstrap, form elements need to be wrapped in a form-group class DIV to receive correct styling -->
+							<div class="form-group">
+								<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text">$</span>
+										</div>
+									<input type="number" class="form-control" id="amount" placeholder="Loan Amount">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text">%</span>
+										</div>
+									<input type="number" class="form-control" id="interest" placeholder="Interest">
+								</div>
+							</div>
+							<div class="form-group">
+									<input type="number" class="form-control" id="years" placeholder="Years to Repay">
+							</div>
+							<div class="form-group">
+								<!-- btn-block creates a block level button that takes up all available width -->
+								<input type="submit" value="Calculate" class="btn btn-dark btn-block">
+							</div>
+						</form>
+						<!-- LOADING IMAGE GOES HERE -->
+						<div id="loading" class="d-none">
+							<img src="img/loading.gif" alt="">
+						</div>
+
+						<!-- RESULTS -->
+						<div id="results" class="pt-4">
+							<h5>Results</h5>
+							<div class="form-group">
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<span class="input-group-text">Monthly Payment</span>
+									</div>
+										<input type="number" class="form-control" id="monthly-payment" disabled>
+								</div>
+							</div>
+
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text">Total Payment</span>
+								</div>
+									<input type="number" class="form-control" id="total-payment" disabled>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text">Total Interest</span>
+								</div>
+									<input type="number" class="form-control" id="total-interest" disabled>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
